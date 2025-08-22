@@ -5,6 +5,7 @@ import 'package:loginform/DashBoard.dart';
 import 'package:loginform/Service.dart';
 import 'package:loginform/SharedPreferences.dart';
 import 'package:loginform/account.dart';
+import 'package:another_flushbar/flushbar.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -53,9 +54,12 @@ class _LoginPageState extends State<LoginPage> {
         print("+++++++${response['message']}");
       }
 
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(response['message'])));
+      Flushbar(
+        message: response['message'],
+        duration: Duration(seconds: 2),
+        backgroundColor: Colors.green,
+        flushbarPosition: FlushbarPosition.TOP, 
+      ).show(context);
     }
   }
 
@@ -153,13 +157,18 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     Checkbox(
                       value: _rememberMe,
+
                       onChanged: (bool? newValue) {
                         setState(() {
                           _rememberMe = newValue ?? false;
                         });
                       },
                     ),
-                    const Text("Remember Me"),
+                    Text(
+                      "Remember me",
+                      style: TextStyle(color: Colors.black, fontSize: 18),
+                    ),
+
                     Spacer(),
                     TextButton(
                       onPressed: () {},

@@ -29,7 +29,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
 Future<String> checktoken() async {
   String? token;
   token = await SharedpreferencesHelper().getData('token');
